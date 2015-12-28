@@ -1,5 +1,5 @@
 { "name": "drs-extract"
-, "version": "0.0.0"
+, "version": "1.0.0"
 , "description": "CLI tool for extracting Genie .DRS archives (Age of Empires / SWGB)."
 , "license": "MIT"
 , "repository": "goto-bus-stop/drs-extract"
