@@ -8,4 +8,7 @@
 , "keywords":
   [ "genie-drs", "genie", "drs", "age of empires", "extract" ]
 , "dependencies":
-  { "meow": "^3.6.0" } }
+  { "each-async": "^1.1.1"
+  , "genie-drs": "^1.0.0"
+  , "meow": "^3.6.0"
+  , "mkdirp": "^0.5.1" } }
