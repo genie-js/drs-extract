@@ -44,4 +44,8 @@ function run (file, outDir) {
   })
 }
 
-run(cli.input[0], cli.input[1])
+if (cli.input.length < 2) {
+  cli.showHelp()
+} else {
+  run(cli.input[0], cli.input[1])
+}
