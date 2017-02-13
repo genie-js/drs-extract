@@ -24,11 +24,15 @@ var cli = meow({
   }
 })
 
+function getExtension (type) {
+  return type.slice(0, 3)
+}
+
 function run (file, outDir) {
   var drs = DRS(file)
   drs.read(function () {
     each(drs.getFiles(), function (meta, i, next) {
-      var name = meta.id + '.' + meta.type
+      var name = meta.id + '.' + getExtension(meta.type)
       drs.readFile(meta.id, function (e, file) {
         if (e) return next(e)
         mkdirp.sync(outDir)
