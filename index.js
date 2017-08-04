@@ -29,7 +29,8 @@ var cli = meow({
     v: 'verbose'
   },
   boolean: [
-    'list'
+    'list',
+    'verbose'
   ]
 })
 
