@@ -7,6 +7,7 @@ var each = require('each-async')
 var DRS = require('genie-drs')
 var meow = require('meow')
 var mkdirp = require('mkdirp')
+var pump = require('pump')
 var prettyBytes = require('pretty-bytes')
 
 var cli = meow({
@@ -41,6 +42,7 @@ function extract (file, outDir) {
   drs.read(onread)
 
   function onread () {
+    mkdirp.sync(outDir)
     each(drs.getFiles(), onfile, function (e) {
       if (e) throw e
     })
@@ -48,15 +50,17 @@ function extract (file, outDir) {
 
   function onfile (meta, i, next) {
     var name = meta.id + '.' + getExtension(meta.type)
-    drs.readFile(meta.id, function (e, file) {
-      if (e) return next(e)
-      mkdirp.sync(outDir)
-      fs.writeFileSync(path.join(outDir, name), file.buf)
-      if (cli.flags.verbose) {
-        console.log(meta.type + '/' + meta.id, '→', path.join(outDir, name))
+    pump(
+      drs.createReadStream(meta.id),
+      fs.createWriteStream(path.join(outDir, name), file.buf),
+      function (err) {
+        if (err) return next(err)
+        if (cli.flags.verbose) {
+          console.log(meta.type + '/' + meta.id, '→', path.join(outDir, name))
+        }
+        next()
       }
-      next()
-    })
+    )
   }
 }
 
@@ -65,10 +69,13 @@ function extractOne (file, id) {
   drs.read(onread)
 
   function onread () {
-    drs.readFile(id, function (e, file) {
-      if (e) throw e
-      process.stdout.write(file.buf)
-    })
+    pump(
+      drs.createReadStream(id),
+      process.stdout,
+      function (err) {
+        if (err) throw err
+      }
+    )
   }
 }
 
