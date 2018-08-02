@@ -1,26 +1,37 @@
 #!/usr/bin/env node
 var meow = require('meow')
 
-var cli = meow({
-  help: [
-    'Usage:',
-    '  $ drs-extract --create /path/to/archive.drs',
-    '  $ drs-extract /path/to/archive.drs [--extract|--get|--add|--list] [options]',
-  ]
-}, {
-  alias: {
-    c: 'create',
-    e: 'extract',
-    g: 'get',
-    a: 'add',
-    l: 'list',
-    t: 'table'
-  },
-  boolean: [
-    'extract',
-    'get',
-    'list'
-  ]
+var cli = meow(`
+  Usage:
+    $ drs-extract --create /path/to/archive.drs
+    $ drs-extract /path/to/archive.drs [--extract|--get|--add|--list] [options]
+`, {
+  flags: {
+    create: {
+      type: 'string',
+      alias: 'c'
+    },
+    extract: {
+      type: 'boolean',
+      alias: 'e'
+    },
+    get: {
+      type: 'boolean',
+      alias: 'g'
+    },
+    add: {
+      type: 'string',
+      alias: 'a'
+    },
+    list: {
+      type: 'boolean',
+      alias: 'l'
+    },
+    table: {
+      type: 'string',
+      alias: 't'
+    },
+  }
 })
 
 var command

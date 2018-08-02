@@ -18,9 +18,9 @@
     "end-of-stream": "^1.4.0",
     "fs-write-stream-atomic": "^1.0.10",
     "genie-drs": "^3.0.0",
-    "meow": "^3.6.0",
+    "meow": "^5.0.0",
     "mkdirp": "^0.5.1",
-    "pretty-bytes": "^4.0.2",
-    "pump": "^1.0.2"
+    "pretty-bytes": "^5.1.0",
+    "pump": "^3.0.0"
   }
 }
