@@ -28,7 +28,7 @@ Example
 
 ## Programmatic Usage
 
-Use [genie-drs](https://github.com/goto-bus-stop/genie-drs), the API library :)
+Use [genie-drs](https://github.com/genie-js/genie-drs), the API library :)
 
 ## Licence
 

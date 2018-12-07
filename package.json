@@ -3,8 +3,8 @@
   "version": "2.0.0",
   "description": "CLI tool for extracting Genie .DRS archives (Age of Empires / SWGB).",
   "license": "MIT",
-  "repository": "goto-bus-stop/drs-extract",
-  "author": "René Kooi <rene@kooi.me>",
+  "repository": "genie-js/drs-extract",
+  "author": "Renée Kooi <renee@kooi.me>",
   "bin": "index.js",
   "keywords": [
     "genie-drs",
